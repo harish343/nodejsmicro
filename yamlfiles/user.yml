@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: order-deployment
+  name: user-deployment
   labels:
-    app: order
+    app: user
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: order
+      app: user
   template:
     metadata:
       labels:
-        app: order
+        app: user
     spec:
       containers:
-      - name: order
+      - name: user
         image: nanajanashia/k8s-demo-app:v1.0
         ports:
-        - containerPort: 2000
+        - containerPort: 4000
         env:
 
         - name: DB_URL
@@ -30,25 +30,25 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: orderservice
+  name: userservice
 spec:
   
   selector:
-    app: order
+    app: user
   ports:
     - protocol: TCP
-      port: 2000
-      targetPort: order
+      port: 4000
+      targetPort: user
     
 
 ---
 apiVersion: v1
 kind: Endpoints
 metadata:
-  name: orderservice
+  name: userservice
 subsets:
   - addresses:
     - ip: 127.0.0.1
     ports:
-    - name: order
-      port: 2000
+    - name: user
+      port: 4000
