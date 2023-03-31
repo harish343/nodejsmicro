@@ -40,7 +40,7 @@ metadata:
   name: mongo-service
 subsets:
   - addresses:
-    - ip: 127.0.0.1
+    - ip: 192.168.0.8
     ports:
     - name: mongo
       port: 27017
