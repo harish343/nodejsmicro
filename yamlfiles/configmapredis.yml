@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: redis-config
 data:
-  mongo-url: redis-service
+  redis-url: redis-service
   

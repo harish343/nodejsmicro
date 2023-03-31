@@ -16,16 +16,17 @@ spec:
     spec:
       containers:
       - name: user
-        image: nanajanashia/k8s-demo-app:v1.0
+        image: harish343/user:1
         ports:
         - containerPort: 4000
         env:
+        - name: MONGODB_DB_URL
+          value: "mongodb://127.0.0.1:27017/users"
+        - name: REDIS_DB_URL
+          value: "127.0.0.1"
+        - name: REDIS_DB_PORT
+          value: "6379"
 
-        - name: DB_URL
-          valueFrom:
-            configMapKeyRef:
-              name: mongo-config
-              key: mongo-url
 ---
 apiVersion: v1
 kind: Service
